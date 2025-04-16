@@ -3,7 +3,7 @@ export default () => ({
 
     setTheme(newTheme) {
         this.theme = newTheme;
-        setTimeout(() => this.applyTheme(), 300);
+        this.applyTheme();
     },
 
     applyTheme() {
@@ -11,7 +11,15 @@ export default () => ({
             this.theme === "dark" ||
             (this.theme === "system" &&
                 window.matchMedia("(prefers-color-scheme: dark)").matches);
+        
+        // Плавное изменение темы
+        document.documentElement.classList.add('transition-colors', 'duration-200');
         document.documentElement.classList.toggle("dark", isDark);
+        
+        // Удаляем классы transition после завершения анимации
+        setTimeout(() => {
+            document.documentElement.classList.remove('transition-colors', 'duration-200');
+        }, 200);
     },
 
     toggleTheme() {
@@ -23,6 +31,8 @@ export default () => ({
 
     init() {
         this.applyTheme();
+        
+        // Слушаем изменения системной темы
         window
             .matchMedia("(prefers-color-scheme: dark)")
             .addEventListener("change", () => {

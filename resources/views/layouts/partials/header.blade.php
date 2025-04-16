@@ -107,20 +107,9 @@
                 </li>
             @endguest
             <li>
-                <div x-data="themeSwitcher">
-                    <button @click="toggleTheme()">
-                        <span x-show="theme === 'light'">
-                            {{ __('Light') }}
-                        </span>
-                        <span x-show="theme === 'dark'">
-                            {{ __('Dark') }}
-                        </span>
-                        <span x-show="theme === 'system' || theme === undefined">
-                            {{ __('Dark') }}
-                        </span>
-                    </button>
+                <div class="flex items-center">
+                    <x-theme-switcher class="mr-4" />
                 </div>
-
             </li>
         </ul>
     </nav>
