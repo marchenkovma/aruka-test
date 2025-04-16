@@ -1,0 +1,10 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide elements with [x-cloak] until Alpine.js initializes to prevent flashing */
+[x-cloak] {
+    display: none;
+}
